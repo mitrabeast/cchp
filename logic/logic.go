@@ -1,6 +1,7 @@
 package logic
 
 import (
+	"cchp/direct"
 	"cchp/fptred"
 	"cchp/interfaced"
 	"cchp/tabled"
@@ -48,4 +49,31 @@ func DoFunctionPointed(instance *fptred.Base) string {
 
 	// _, _, _ = first, second, third
 	return fmt.Sprintf("%d, %s, %s", first, second, third)
+}
+
+func DoDirect(aInstance direct.A, bInstance direct.B, cInstance direct.C) string {
+	first := direct.A_FirstOp(aInstance, a, b)
+	second := direct.A_SecondOp(aInstance, s)
+	third := direct.A_ThirdOp(aInstance)
+
+	_, _, _ = first, second, third
+	// aResult := fmt.Sprintf("%d, %s, %s", first, second, third)
+
+	first = direct.B_FirstOp(bInstance, a, b)
+	second = direct.B_SecondOp(bInstance, s)
+	third = direct.B_ThirdOp(bInstance)
+
+	_, _, _ = first, second, third
+	// bResult := fmt.Sprintf("%d, %s, %s", first, second, third)
+
+	first = direct.C_FirstOp(cInstance, a, b)
+	second = direct.C_SecondOp(cInstance, s)
+	third = direct.C_ThirdOp(cInstance)
+
+	_, _, _ = first, second, third
+	// cResult := fmt.Sprintf("%d, %s, %s", first, second, third)
+
+	// return fmt.Sprintf("\t%s\n\t%s\n\t%s\n", aResult, bResult, cResult)
+
+	return ""
 }

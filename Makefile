@@ -1,5 +1,5 @@
 build:
-	@go build  -o ./bin/cchp .
+	@GOGC=off go build  -o ./bin/cchp .
 	@./bin/cchp
 
 bench:
