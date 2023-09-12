@@ -19,19 +19,19 @@ type FirstOpType func(a *Base, b int, c int) int
 type SecondOpType func(a *Base, d string) string
 type ThirdOpType func(a *Base) string
 
-var FirstOpsTable = []FirstOpType{
+var FirstOpsTable = [...]FirstOpType{
 	AType: A_firstOp,
 	BType: B_firstOp,
 	CType: C_firstOp,
 }
 
-var SecondOpsTable = []SecondOpType{
+var SecondOpsTable = [...]SecondOpType{
 	AType: A_secondOp,
 	BType: B_secondOp,
 	CType: C_secondOp,
 }
 
-var ThirdOpsTable = []ThirdOpType{
+var ThirdOpsTable = [...]ThirdOpType{
 	AType: A_thirdOp,
 	BType: B_thirdOp,
 	CType: C_thirdOp,

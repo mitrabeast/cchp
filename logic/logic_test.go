@@ -1,65 +1,77 @@
 package logic_test
 
 import (
+	"testing"
+
 	"cchp/fptred"
 	"cchp/interfaced"
 	"cchp/logic"
 	"cchp/tabled"
-	"testing"
+	"cchp/util"
 )
 
+var first, second, third string
+
 func BenchmarkDoInterfaced(b *testing.B) {
-	interfacedA := interfaced.NewA("A", 1, 2, 3)
-	interfacedB := interfaced.NewB("B", 10, 20)
-	interfacedC := interfaced.NewC("C", 100, "200")
+	interfacedA := interfaced.NewA("A", util.RandInt(), util.RandInt(), util.RandInt())
+	interfacedB := interfaced.NewB("B", util.RandInt(), util.RandInt())
+	interfacedC := interfaced.NewC("C", util.RandInt(), util.RandString(10))
 
 	b.ResetTimer()
 
 	for i := 0; i < b.N; i++ {
-		logic.DoInterfaced(interfacedA)
-		logic.DoInterfaced(interfacedB)
-		logic.DoInterfaced(interfacedC)
+		first = logic.DoInterfaced(interfacedA)
+		second = logic.DoInterfaced(interfacedB)
+		third = logic.DoInterfaced(interfacedC)
 	}
+
+	_, _, _ = first, second, third
 }
 
 func BenchmarkDoTabled(b *testing.B) {
-	tabledA := tabled.NewA("A", 1, 2, 3)
-	tabledB := tabled.NewB("B", 10, 20)
-	tabledC := tabled.NewC("C", 100, "200")
+	tabledA := tabled.NewA("A", util.RandInt(), util.RandInt(), util.RandInt())
+	tabledB := tabled.NewB("B", util.RandInt(), util.RandInt())
+	tabledC := tabled.NewC("C", util.RandInt(), util.RandString(10))
 
 	b.ResetTimer()
 
 	for i := 0; i < b.N; i++ {
-		logic.DoTabled(tabledA)
-		logic.DoTabled(tabledB)
-		logic.DoTabled(tabledC)
+		first = logic.DoTabled(tabledA)
+		second = logic.DoTabled(tabledB)
+		third = logic.DoTabled(tabledC)
 	}
+
+	_, _, _ = first, second, third
 }
 
 func BenchmarkDoDirectTabled(b *testing.B) {
-	tabledA := tabled.NewA("A", 1, 2, 3)
-	tabledB := tabled.NewB("B", 10, 20)
-	tabledC := tabled.NewC("C", 100, "200")
+	tabledA := tabled.NewA("A", util.RandInt(), util.RandInt(), util.RandInt())
+	tabledB := tabled.NewB("B", util.RandInt(), util.RandInt())
+	tabledC := tabled.NewC("C", util.RandInt(), util.RandString(10))
 
 	b.ResetTimer()
 
 	for i := 0; i < b.N; i++ {
-		logic.DoDirectTabled(tabledA)
-		logic.DoDirectTabled(tabledB)
-		logic.DoDirectTabled(tabledC)
+		first = logic.DoDirectTabled(tabledA)
+		second = logic.DoDirectTabled(tabledB)
+		third = logic.DoDirectTabled(tabledC)
 	}
+
+	_, _, _ = first, second, third
 }
 
 func BenchmarkDoFunctionPointed(b *testing.B) {
-	fptredA := fptred.NewA("A", 1, 2, 3)
-	fptredB := fptred.NewB("B", 10, 20)
-	fptredC := fptred.NewC("C", 100, "200")
+	fptredA := fptred.NewA("A", util.RandInt(), util.RandInt(), util.RandInt())
+	fptredB := fptred.NewB("B", util.RandInt(), util.RandInt())
+	fptredC := fptred.NewC("C", util.RandInt(), util.RandString(10))
 
 	b.ResetTimer()
 
 	for i := 0; i < b.N; i++ {
-		logic.DoFunctionPointed(fptredA)
-		logic.DoFunctionPointed(fptredB)
-		logic.DoFunctionPointed(fptredC)
+		first = logic.DoFunctionPointed(fptredA)
+		second = logic.DoFunctionPointed(fptredB)
+		third = logic.DoFunctionPointed(fptredC)
 	}
+
+	_, _, _ = first, second, third
 }
