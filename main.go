@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 
 	"cchp/interfaced"
 	"cchp/tabled"
@@ -39,19 +38,19 @@ func main() {
 		DoInterface(interfaced.NewB("B", 10, 20))
 		DoInterface(interfaced.NewC("C", 100, "200"))
 	})
-	log.Printf("%10s, took: %8v, %8v cycles", "interfaced", runtime, ticks)
+	fmt.Printf("%15s, took: %8v, %8v cycles\n", "interfaced", runtime, ticks)
 
 	runtime, ticks = util.MeasureRuntime(func() {
 		DoTable(tabled.NewA("A", 1, 2, 3))
 		DoTable(tabled.NewB("B", 10, 20))
 		DoTable(tabled.NewC("C", 100, "200"))
 	})
-	log.Printf("%10s, took: %8v, %8v cycles", "tabled", runtime, ticks)
+	fmt.Printf("%15s, took: %8v, %8v cycles\n", "tabled", runtime, ticks)
 
 	runtime, ticks = util.MeasureRuntime(func() {
 		DoDirectTable(tabled.NewA("A", 1, 2, 3))
 		DoDirectTable(tabled.NewB("B", 10, 20))
 		DoDirectTable(tabled.NewC("C", 100, "200"))
 	})
-	log.Printf("%10s, took: %8v, %8v cycles", "dtabled", runtime, ticks)
+	fmt.Printf("%15s, took: %8v, %8v cycles\n", "direct tabled", runtime, ticks)
 }
