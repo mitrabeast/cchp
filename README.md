@@ -2,6 +2,6 @@
 
 | Test type     | Time     | Cycles |
 |---------------|----------|--------|
-| interfaced    | 32.304µs | 115752 |
-| tabled        |  2.767µs |   9664 |
-| direct tabled |  2.269µs |   8056 |
+| interfaced    | 31.914µs | 114366 |
+| tabled        |   1.61µs |   5540 |
+| direct tabled |  1.391µs |   4780 |
