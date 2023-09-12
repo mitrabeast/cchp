@@ -20,3 +20,12 @@ BenchmarkDoFunctionPointed/func_pointed-4 	1000000000	         0.0000040 ns/op
 PASS
 ok  	cchp/logic	0.008s
 ```
+
+## After adding part that somehow makes it all faster
+
+| Test type        | Time     | Cycles |
+|------------------|----------|--------|
+| interfaced       |   1.831µs|   5824 |
+| tabled           |   1.63µs |   5568 |
+| direct tabled    |  1.695µs |   5930 |
+| function pointed |  1.818µs |   6424 |

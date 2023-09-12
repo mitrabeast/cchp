@@ -8,17 +8,18 @@ import (
 	"testing"
 )
 
-func BenchmarkDoInterface(b *testing.B) {
+func BenchmarkDoInterfaced(b *testing.B) {
 	interfacedA := interfaced.NewA("A", 1, 2, 3)
 	interfacedB := interfaced.NewB("B", 10, 20)
 	interfacedC := interfaced.NewC("C", 100, "200")
 
 	b.ResetTimer()
-	b.Run("interfaced", func(b *testing.B) {
+
+	for i := 0; i < b.N; i++ {
 		logic.DoInterfaced(interfacedA)
 		logic.DoInterfaced(interfacedB)
 		logic.DoInterfaced(interfacedC)
-	})
+	}
 }
 
 func BenchmarkDoTabled(b *testing.B) {
@@ -27,11 +28,12 @@ func BenchmarkDoTabled(b *testing.B) {
 	tabledC := tabled.NewC("C", 100, "200")
 
 	b.ResetTimer()
-	b.Run("tabled", func(b *testing.B) {
+
+	for i := 0; i < b.N; i++ {
 		logic.DoTabled(tabledA)
 		logic.DoTabled(tabledB)
 		logic.DoTabled(tabledC)
-	})
+	}
 }
 
 func BenchmarkDoDirectTabled(b *testing.B) {
@@ -40,11 +42,12 @@ func BenchmarkDoDirectTabled(b *testing.B) {
 	tabledC := tabled.NewC("C", 100, "200")
 
 	b.ResetTimer()
-	b.Run("direct tabled", func(b *testing.B) {
+
+	for i := 0; i < b.N; i++ {
 		logic.DoDirectTabled(tabledA)
 		logic.DoDirectTabled(tabledB)
 		logic.DoDirectTabled(tabledC)
-	})
+	}
 }
 
 func BenchmarkDoFunctionPointed(b *testing.B) {
@@ -53,9 +56,10 @@ func BenchmarkDoFunctionPointed(b *testing.B) {
 	fptredC := fptred.NewC("C", 100, "200")
 
 	b.ResetTimer()
-	b.Run("func pointed", func(b *testing.B) {
+
+	for i := 0; i < b.N; i++ {
 		logic.DoFunctionPointed(fptredA)
 		logic.DoFunctionPointed(fptredB)
 		logic.DoFunctionPointed(fptredC)
-	})
+	}
 }

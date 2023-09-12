@@ -1,25 +1,29 @@
 package main
 
 import (
-	"fmt"
-
 	"cchp/fptred"
 	"cchp/interfaced"
 	"cchp/logic"
 	"cchp/tabled"
 	"cchp/util"
+	"fmt"
+	"time"
 )
 
 func main() {
-	interfacedA := interfaced.NewA("A", 1, 2, 3)
-	interfacedB := interfaced.NewB("B", 10, 20)
-	interfacedC := interfaced.NewC("C", 100, "200")
-	runtime, ticks := util.MeasureRuntime(func() {
-		logic.DoInterfaced(interfacedA)
-		logic.DoInterfaced(interfacedB)
-		logic.DoInterfaced(interfacedC)
-	})
-	fmt.Printf("%16s, took: %8v, %8v cycles\n", "interfaced", runtime, ticks)
+	var runtime time.Duration
+	var ticks uint64
+
+	// make it work faster somehow ???
+	a := interfaced.NewC("C", 100, "200")
+	b := tabled.NewC("C", 100, "200")
+	c := fptred.NewC("C", 100, "200")
+	for i := int64(0); i < 999_999; i++ {
+		logic.DoInterfaced(a)
+		logic.DoTabled(b)
+		logic.DoDirectTabled(b)
+		logic.DoFunctionPointed(c)
+	}
 
 	tabledA := tabled.NewA("A", 1, 2, 3)
 	tabledB := tabled.NewB("B", 10, 20)
@@ -49,4 +53,13 @@ func main() {
 	})
 	fmt.Printf("%16s, took: %8v, %8v cycles\n", "function pointed", runtime, ticks)
 
+	interfacedA := interfaced.NewA("A", 1, 2, 3)
+	interfacedB := interfaced.NewB("B", 10, 20)
+	interfacedC := interfaced.NewC("C", 100, "200")
+	runtime, ticks = util.MeasureRuntime(func() {
+		logic.DoInterfaced(interfacedA)
+		logic.DoInterfaced(interfacedB)
+		logic.DoInterfaced(interfacedC)
+	})
+	fmt.Printf("%16s, took: %8v, %8v cycles\n", "interfaced", runtime, ticks)
 }
