@@ -14,7 +14,7 @@ func NewC(
 	CSpecificField2 string,
 ) *Base {
 	return &Base{
-		C: C{
+		C: &C{
 			UniversalField:  UniversalField,
 			CSpecificField1: CSpecificField1,
 			CSpecificField2: CSpecificField2,

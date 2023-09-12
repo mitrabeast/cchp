@@ -25,6 +25,14 @@ func DoTable(instance *tabled.Base) string {
 	return fmt.Sprintf("%d, %s, %s", first, second, third)
 }
 
+func DoDirectTable(instance *tabled.Base) string {
+	first := tabled.FirstOpsTable[instance.Type](instance, 2, 3)
+	second := tabled.SecondOpsTable[instance.Type](instance, "hello")
+	third := tabled.ThirdOpsTable[instance.Type](instance)
+
+	return fmt.Sprintf("%d, %s, %s", first, second, third)
+}
+
 func main() {
 	runtime, ticks := util.MeasureRuntime(func() {
 		DoInterface(interfaced.NewA("A", 1, 2, 3))
@@ -39,4 +47,11 @@ func main() {
 		DoTable(tabled.NewC("C", 100, "200"))
 	})
 	log.Printf("%10s, took: %8v, %8v cycles", "tabled", runtime, ticks)
+
+	runtime, ticks = util.MeasureRuntime(func() {
+		DoDirectTable(tabled.NewA("A", 1, 2, 3))
+		DoDirectTable(tabled.NewB("B", 10, 20))
+		DoDirectTable(tabled.NewC("C", 100, "200"))
+	})
+	log.Printf("%10s, took: %8v, %8v cycles", "dtabled", runtime, ticks)
 }

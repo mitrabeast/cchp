@@ -2,9 +2,9 @@ package tabled
 
 type Base struct {
 	Type ItemType
-	A
-	B
-	C
+	*A
+	*B
+	*C
 }
 
 type ItemType int

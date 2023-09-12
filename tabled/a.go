@@ -16,7 +16,7 @@ func NewA(
 	ASpecificField3 int,
 ) *Base {
 	return &Base{
-		A: A{
+		A: &A{
 			UniversalField:  UniversalField,
 			ASpecificField1: ASpecificField1,
 			ASpecificField2: ASpecificField2,

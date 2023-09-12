@@ -14,7 +14,7 @@ func NewB(
 	BSpecificField2 int,
 ) *Base {
 	return &Base{
-		B: B{
+		B: &B{
 			UniversalField:  UniversalField,
 			BSpecificField1: BSpecificField1,
 			BSpecificField2: BSpecificField2,
