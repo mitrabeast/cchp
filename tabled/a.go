@@ -1,6 +1,9 @@
 package tabled
 
-import "fmt"
+import (
+	"strconv"
+	"strings"
+)
 
 type A struct {
 	UniversalField  string
@@ -33,10 +36,22 @@ func A_firstOp(a_ *Base, b int, c int) int {
 
 func A_secondOp(a_ *Base, d string) string {
 	a := a_.A
-	return fmt.Sprintf("from a (%s): %s", a.UniversalField, d)
+	var builder strings.Builder
+	builder.WriteString("from a(")
+	builder.WriteString(a.UniversalField)
+	builder.WriteString("): ")
+	builder.WriteString(d)
+	return builder.String()
 }
 
 func A_thirdOp(a_ *Base) string {
 	a := a_.A
-	return fmt.Sprintf("a specific: %d, %d, %d", a.ASpecificField1, a.ASpecificField2, a.ASpecificField3)
+	var builder strings.Builder
+	builder.WriteString("a specific: ")
+	builder.WriteString(strconv.FormatInt(int64(a.ASpecificField1), 10))
+	builder.WriteString(", ")
+	builder.WriteString(strconv.FormatInt(int64(a.ASpecificField2), 10))
+	builder.WriteString(", ")
+	builder.WriteString(strconv.FormatInt(int64(a.ASpecificField3), 10))
+	return builder.String()
 }

@@ -1,6 +1,9 @@
 package interfaced
 
-import "fmt"
+import (
+	"strconv"
+	"strings"
+)
 
 type B struct {
 	UniversalField  string
@@ -25,9 +28,19 @@ func (b *B) FirstOp(c int, d int) int {
 }
 
 func (b *B) SecondOp(d string) string {
-	return fmt.Sprintf("from b (%s): %s", b.UniversalField, d)
+	var builder strings.Builder
+	builder.WriteString("from b(")
+	builder.WriteString(b.UniversalField)
+	builder.WriteString("): ")
+	builder.WriteString(d)
+	return builder.String()
 }
 
 func (b *B) ThirdOp() string {
-	return fmt.Sprintf("b specific: %d, %d", b.BSpecificField1, b.BSpecificField2)
+	var builder strings.Builder
+	builder.WriteString("b specific: ")
+	builder.WriteString(strconv.FormatInt(int64(b.BSpecificField1), 10))
+	builder.WriteString(", ")
+	builder.WriteString(strconv.FormatInt(int64(b.BSpecificField2), 10))
+	return builder.String()
 }

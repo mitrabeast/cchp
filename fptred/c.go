@@ -1,6 +1,9 @@
 package fptred
 
-import "fmt"
+import (
+	"strconv"
+	"strings"
+)
 
 type C struct {
 	UniversalField  string
@@ -33,12 +36,22 @@ func Crate_C_firstOp(c *C) FirstOpType {
 
 func Crate_C_secondOp(c *C) SecondOpType {
 	return func(d string) string {
-		return fmt.Sprintf("from c (%s): %s", c.UniversalField, d)
+		var builder strings.Builder
+		builder.WriteString("from c(")
+		builder.WriteString(c.UniversalField)
+		builder.WriteString("): ")
+		builder.WriteString(d)
+		return builder.String()
 	}
 }
 
 func Crate_C_thirdOp(c *C) ThirdOpType {
 	return func() string {
-		return fmt.Sprintf("b specific: %d, %s", c.CSpecificField1, c.CSpecificField2)
+		var builder strings.Builder
+		builder.WriteString("c specific: ")
+		builder.WriteString(strconv.FormatInt(int64(c.CSpecificField1), 10))
+		builder.WriteString(", ")
+		builder.WriteString(c.CSpecificField2)
+		return builder.String()
 	}
 }

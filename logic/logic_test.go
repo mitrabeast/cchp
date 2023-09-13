@@ -3,6 +3,7 @@ package logic_test
 import (
 	"testing"
 
+	"cchp/direct"
 	"cchp/fptred"
 	"cchp/interfaced"
 	"cchp/logic"
@@ -74,4 +75,20 @@ func BenchmarkDoFunctionPointed(b *testing.B) {
 	}
 
 	_, _, _ = first, second, third
+}
+
+func BenchmarkDirect(b *testing.B) {
+	directA := direct.NewA("A", util.RandInt(), util.RandInt(), util.RandInt())
+	directB := direct.NewB("B", util.RandInt(), util.RandInt())
+	directC := direct.NewC("C", util.RandInt(), util.RandString(10))
+
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		first = logic.DoDirectA(directA)
+		second = logic.DoDirectB(directB)
+		third = logic.DoDirectC(directC)
+	}
+
+	_ = first
 }

@@ -1,6 +1,9 @@
 package direct
 
-import "fmt"
+import (
+	"strconv"
+	"strings"
+)
 
 type B struct {
 	UniversalField  string
@@ -25,9 +28,19 @@ func B_FirstOp(b B, c int, d int) int {
 }
 
 func B_SecondOp(b B, d string) string {
-	return fmt.Sprintf("from b (%s): %s", b.UniversalField, d)
+	var builder strings.Builder
+	builder.WriteString("from b(")
+	builder.WriteString(b.UniversalField)
+	builder.WriteString("): ")
+	builder.WriteString(d)
+	return builder.String()
 }
 
 func B_ThirdOp(b B) string {
-	return fmt.Sprintf("b specific: %d, %d", b.BSpecificField1, b.BSpecificField2)
+	var builder strings.Builder
+	builder.WriteString("b specific: ")
+	builder.WriteString(strconv.FormatInt(int64(b.BSpecificField1), 10))
+	builder.WriteString(", ")
+	builder.WriteString(strconv.FormatInt(int64(b.BSpecificField2), 10))
+	return builder.String()
 }

@@ -30,7 +30,7 @@ var (
 	directC = direct.NewC("C", util.RandInt(), util.RandString(10))
 )
 
-const tests = 999_999
+const tests = 9_999_999
 
 func main() {
 	var ranInSum time.Duration
@@ -100,7 +100,9 @@ func main() {
 	ranInSum, ticksSum = 0, 0
 	for i := 0; i < tests; i++ {
 		ranIn, ticks := util.MeasureRuntime(func() {
-			a = logic.DoDirect(directA, directB, directC)
+			a = logic.DoDirectA(directA)
+			b = logic.DoDirectB(directB)
+			c = logic.DoDirectC(directC)
 		})
 		if i > 5 {
 			ranInSum += ranIn
